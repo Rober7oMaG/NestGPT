@@ -15,7 +15,7 @@ export const orthographyCheckUseCase = async (
       {
         role: 'system',
         content: `
-          You will be provided with texts in English or Spanish that may contain grammatical and orthographic errors. 
+          You will be provided with texts in English that may contain grammatical and orthographic errors. 
           
           Your task is to correct the errors and make the text grammatically and orthographically correct, and also to give a percentage of the text's correctness. If there are no errors in the text, you should return a congratulations message.
 

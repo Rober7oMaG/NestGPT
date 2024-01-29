@@ -1,8 +1,8 @@
 {
   "name": "nest-gpt",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
-  "author": "",
+  "author": "Roberto Macias",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
