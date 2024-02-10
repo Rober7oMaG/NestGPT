@@ -30,7 +30,7 @@ export const orthographyCheckUseCase = async (
       },
       { role: 'user', content: prompt },
     ],
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-1106',
     temperature: 0.3,
     max_tokens: 150,
     //* This may be invalid in certain models
