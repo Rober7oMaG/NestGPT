@@ -6,10 +6,8 @@ type Options = {
 
 export const orthographyCheckUseCase = async (
   openAI: OpenAI,
-  options: Options,
+  { prompt }: Options,
 ) => {
-  const { prompt } = options;
-
   const completion = await openAI.chat.completions.create({
     messages: [
       {
