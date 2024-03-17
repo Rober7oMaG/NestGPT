@@ -26,7 +26,7 @@ export class GptController {
       await this.gptService.prosConsDiscusserStream(prosConsDiscusserDTO);
 
     res.setHeader('Content-Type', 'application/json');
-    res.send(HttpStatus.OK);
+    res.status(HttpStatus.OK);
 
     for await (const chunk of stream) {
       const piece = chunk.choices[0].delta.content || '';
