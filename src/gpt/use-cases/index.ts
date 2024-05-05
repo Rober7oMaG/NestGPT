@@ -4,3 +4,4 @@ export { prosConsDiscusserStreamUseCase } from './pros-cons-discusser-stream.use
 export { translateUseCase } from './translate.use-case';
 export { textToAudioUseCase } from './text-to-audio.use-case';
 export { textToAudioGetterUseCase } from './text-to-audio-getter.use-case';
+export { audioToTextUseCase } from './audio-to-text.use-case';
