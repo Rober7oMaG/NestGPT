@@ -2,15 +2,15 @@ import { NotFoundException } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 
-export const textToAudioGetterUseCase = (fileId: string) => {
+export const getImageByNameUseCase = async (fileName: string) => {
   const filePath = path.resolve(
     __dirname,
-    '../../../generated/audios/',
-    `${fileId}.mp3`,
+    '../../../generated/images/',
+    fileName,
   );
 
   if (!fs.existsSync(filePath))
-    throw new NotFoundException(`File ${fileId} not found`);
+    throw new NotFoundException(`File ${fileName} not found`);
 
   return filePath;
 };

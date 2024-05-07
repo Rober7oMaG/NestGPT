@@ -2,15 +2,20 @@ import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import {
   audioToTextUseCase,
+  imageGenerationUseCase,
   orthographyCheckUseCase,
   prosConsDiscusserStreamUseCase,
   prosConsDiscusserUseCase,
-  textToAudioGetterUseCase,
+  getAudioByIdUseCase,
   textToAudioUseCase,
   translateUseCase,
+  getImageByNameUseCase,
+  imageVariationUseCase,
 } from './use-cases';
 import {
   AudioToTextDTO,
+  ImageGenerationDTO,
+  ImageVariationDTO,
   OrthographyDTO,
   ProsConsDiscusserDTO,
   TextToAudioDTO,
@@ -41,8 +46,8 @@ export class GptService {
     return await translateUseCase(this.openAI, { prompt, language });
   }
 
-  async textToAudioGetter(fileId: string) {
-    return await textToAudioGetterUseCase(fileId);
+  async getAudioById(fileId: string) {
+    return await getAudioByIdUseCase(fileId);
   }
 
   async textToAudio({ prompt, voice }: TextToAudioDTO) {
@@ -54,5 +59,17 @@ export class GptService {
     { prompt }: AudioToTextDTO,
   ) {
     return await audioToTextUseCase(this.openAI, { audioFile, prompt });
+  }
+
+  async getImageByName(fileName: string) {
+    return await getImageByNameUseCase(fileName);
+  }
+
+  async imageGeneration(imageGenerationDTO: ImageGenerationDTO) {
+    return await imageGenerationUseCase(this.openAI, { ...imageGenerationDTO });
+  }
+
+  async imageVariation({ baseImage }: ImageVariationDTO) {
+    return await imageVariationUseCase(this.openAI, { baseImage });
   }
 }
