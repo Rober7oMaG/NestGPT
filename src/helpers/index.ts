@@ -1,1 +1,1 @@
-export * from './image-downloader';
+export * from './images-helper';

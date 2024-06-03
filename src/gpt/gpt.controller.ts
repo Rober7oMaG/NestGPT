@@ -137,4 +137,35 @@ export class GptController {
   async imageVariation(@Body() imageVariationDTO: ImageVariationDTO) {
     return await this.gptService.imageVariation(imageVariationDTO);
   }
+
+  @Post('image-to-text')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './generated/uploads',
+        filename: (req, file, callback) => {
+          const fileExtension = file.originalname.split('.').pop();
+          const fileName = `${new Date().getTime()}.${fileExtension}`;
+          return callback(null, fileName);
+        },
+      }),
+    }),
+  )
+  async textToImage(
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({
+            maxSize: 1000 * 1024 * 5,
+            message: 'File is bigger than 5 mb ',
+          }),
+          new FileTypeValidator({ fileType: 'image/*' }),
+        ],
+      }),
+    )
+    file: Express.Multer.File,
+    @Body('prompt') prompt: string,
+  ) {
+    return this.gptService.imageToText(file, prompt);
+  }
 }
