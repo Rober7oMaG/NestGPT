@@ -157,7 +157,7 @@ export class GptController {
         validators: [
           new MaxFileSizeValidator({
             maxSize: 1000 * 1024 * 5,
-            message: 'File is bigger than 5 mb ',
+            message: 'File is bigger than 5 MB',
           }),
           new FileTypeValidator({ fileType: 'image/*' }),
         ],
